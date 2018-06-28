@@ -1,0 +1,17 @@
+<form class="" action="/<%=@shirts[:id]%>" method="shirt">
+  <label for="">shirt Id</label>
+  <input type="text" name="id" value="<%=@shirts[:id]%>">
+<br>
+  <label for="">shirt Title</label>
+  <input type="text" name="title" value="<%=@shirts[:title]%>">
+<br>
+  <label for="">shirt Body</label>
+  <input type="text" name="body" value="<%=@shirts[:body]%>">
+<br>
+  <input type="submit" name="submit" value="Click To Submit">
+  <% if @shirts[:id] != "" %>
+    <input type="hidden" name="_method" value="put">
+  <% end %>
+
+
+</form>

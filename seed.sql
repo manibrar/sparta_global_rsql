@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS shirt;
+DROP TABLE IF EXISTS shirts;
 
-CREATE TABLE shirt (
+CREATE TABLE shirts (
 
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),

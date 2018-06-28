@@ -1,2 +1,8 @@
+<h1><%= @shirt[:title] %></h1>
+<p><%= @shirt[:body] %></p>
+<a href="/<%= @shirt[:id] %>/edit">edit</a>
 
-<h1>Hello show</h1>
+<form class="" action="/<%= @shirt[:id] %>" method="shirt">
+<input href="/<%= @shirt[:id] %>" type="hidden" name="_method" value="delete">
+<input type="submit" name="submit" value="Delete shirt">
+</form>

@@ -1,74 +1,98 @@
 class ShirtsController < Sinatra::Base
+
+  # sets root as the parent-directory of the current file
   set :root, File.join(File.dirname(__FILE__), '..')
-  set :views, Proc.new { File.join(root, "views")}
+
+  # sets the view directory correctly
+  set :views, Proc.new { File.join(root, "views") }
+
   configure :development do
-    register Sinatra::Reloader
+      register Sinatra::Reloader
   end
 
-shirts = [
+  shirts = [{
+      id: 0,
+      title: "shirt 1",
+      body: "This is the first shirt"
+  },
   {
-  id:0,
-  title: "Extra small shirt",
-  size: "XS",
-  colour: "Orange",
-  material:"Plaid"
-},
-{
-  id:1,
-  title: "Small shirt",
-  size: "S",
-  colour: "lightblue",
-  material:"Denim"
-},
-{
-  id:2,
-  title: "Medium shirt",
-  size: "M",
-  colour: "pink",
-  material:"Silk"
-},
-{
-  id:3,
-  title: "Large shirt",
-  size: "L",
-  colour: "lightgrey",
-  material:"Nylon"
-},
-{
-  id:4,
-  title: "Extra Large shirt",
-  size: "XL",
-  colour: "purple",
-  material:"Elastic"
-}
-]
+      id: 1,
+      title: "shirt 2",
+      body: "This is the second shirt"
+  },
+  {
+      id: 2,
+      title: "shirt 3",
+      body: "This is the third shirt"
+  }];
+
+  get '/' do
+
+      @title = "Blog shirts"
+
+      @shirts = shirts
+
+      erb :'shirts/index'
+
+  end
+
+  get '/:id' do
+
+    # get the ID and turn it in to an integer
+    id = params[:id].to_i
+    # make a single shirt object available in the template
+    @shirt = shirts[id]
+
+    erb :'shirts/show'
+
+  end
+
+  post '/' do
+    new_shirt = {
+      id: params[:id],
+      title: params[:title],
+      body: params[:body]
+    }
+    shirts.push new_shirt
+    @shirts = shirts
+
+    redirect '/'
+
+  end
 
 
+  get '/shirts/new'  do
+    @shirts = {
+      id: "",
+      title: "",
+      body: ""
+    }
+    erb :'/shirts/new'
 
-get '/' do
-  @title = "Blog posts"
-  @shirts = Shirt.all
-  redirect '/index'
-end
+  end
 
-get '/new' do
-end
+  put '/:id'  do
+    id = params[:id].to_i
+    shirt = shirts[id]
+    shirt[:title] = params[:title]
+    shirt[:body] = params[:body]
+    shirts[id] = shirt
+    redirect '/'
 
-post '/' do
-end
+  end
 
-get '/:id' do
-  
+  delete '/:id'  do
+    id = params[:id].to_i
+    shirts.delete_at(id)
 
-end
+    redirect '/'
+  end
 
-get '/:id/edit' do
-end
+  get '/:id/edit'  do
+    id = params[:id].to_i
+    @shirts = shirts[id]
+    erb :'/shirts/edit'
 
-put '/photos/:id' do
-end
-
-delete '/:id' do
-end
+  end
 
 end
