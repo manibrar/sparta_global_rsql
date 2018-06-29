@@ -1,6 +1,7 @@
 require 'sinatra'
-require 'pg'
+require 'sinatra/contrib'
 require 'sinatra/reloader' if development?
+require 'pg'
 require_relative './controllers/shirts_controller.rb'
 require_relative './models/shirts.rb'
 

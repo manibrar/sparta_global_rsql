@@ -1,4 +1,4 @@
-require "pg"
+require "PG"
 class Shirt
 
   attr_accessor :id, :title, :body
@@ -29,7 +29,7 @@ class Shirt
 
         conn = self.open_connection
 
-        sql = "SELECT id,title,body FROM SHIRTS ORDER BY id"
+        sql = "SELECT id,title,body FROM shirts ORDER BY id"
 
         results = conn.exec(sql)
 
@@ -46,7 +46,7 @@ class Shirt
 
         conn = self.open_connection
 
-        sql = "SELECT * FROM SHIRTS WHERE id = #{id} LIMIT 1"
+        sql = "SELECT * FROM shirts WHERE id = #{id} LIMIT 1"
 
         # PG always returns an array
         shirts = conn.exec(sql)
@@ -62,7 +62,7 @@ class Shirt
 
       conn = self.open_connection
 
-      sql = "DELETE FROM SHIRTS where id = #{id}"
+      sql = "DELETE FROM shirts where id = #{id}"
 
       # handle delete here
       conn.exec(sql)
