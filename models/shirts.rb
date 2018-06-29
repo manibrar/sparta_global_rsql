@@ -1,4 +1,4 @@
-require "pg"
+
 class Shirt
 
   attr_accessor :id, :title, :body
