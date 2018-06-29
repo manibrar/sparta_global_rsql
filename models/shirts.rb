@@ -4,12 +4,12 @@ class Shirt
   attr_accessor :id, :title, :body
 
   def self.open_connection
-    conn = PG.connect( dbname: 'shirts')
+    conn = PG::connect( dbname: 'shirts')
   end
 
   def self.all
     conn = self.open_connection
-    sql = "SELECT ID, TITLE, BODY FROM SHIRT ORDER BY ID"
+    sql = "SELECT ID, TITLE, BODY FROM SHIRTS ORDER BY ID"
     result = conn.exec(sql)
     shirts = result.map do |tuple|
       self.hydrate tuple
@@ -23,7 +23,7 @@ class Shirt
     shirt.title = shirt_data['title']
     shirt.body = shirt_data['body']
 
-    shirt #this returns the data
+    shirt
   end
 
 

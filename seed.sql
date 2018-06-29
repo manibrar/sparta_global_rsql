@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS shirts;
+DROP TABLE IF EXISTS SHIRTS;
 
-CREATE TABLE shirts (
+CREATE TABLE SHIRTS (
 
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
@@ -8,7 +8,7 @@ CREATE TABLE shirts (
 
 );
 
-INSERT INTO shirt (title , body) VALUES ('1' , 'shirt text 1');
-INSERT INTO shirt (title , body) VALUES ('2' , 'shirt text 2');
-INSERT INTO shirt (title , body) VALUES ('3' , 'shirt text 3');
-INSERT INTO shirt (title , body) VALUES ('4' , 'shirt text 4');
+INSERT INTO SHIRTS (title , body) VALUES ('1' , 'shirt text 1');
+INSERT INTO SHIRTS (title , body) VALUES ('2' , 'shirt text 2');
+INSERT INTO SHIRTS (title , body) VALUES ('3' , 'shirt text 3');
+INSERT INTO SHIRTS (title , body) VALUES ('4' , 'shirt text 4');

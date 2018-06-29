@@ -3,7 +3,7 @@
 
 <% @shirts.each do |shirt| %>
 <div>
-  <h3><a href="/<%= shirt[:id] %>"><%= shirt[:title] %></a></h3>
-  <p><%= shirt[:body] %></p>
+  <h3><a href="/<%= shirt.id %>"><%= shirt.title %></a></h3>
+  <p><%= shirt.body %></p>
 </div>
 <% end %>

@@ -28,9 +28,8 @@ class ShirtsController < Sinatra::Base
 
   get '/' do
 
-      @title = "Blog shirts"
 
-      @shirts = shirts
+      @shirts = Shirt.all
 
       erb :'shirts/index'
 
@@ -43,7 +42,7 @@ class ShirtsController < Sinatra::Base
     # make a single shirt object available in the template
     @shirt = shirts[id]
 
-    erb :'shirts/show'
+    erb :'./shirts/show'
 
   end
 
@@ -94,5 +93,6 @@ class ShirtsController < Sinatra::Base
     erb :'/shirts/edit'
 
   end
+
 
 end
