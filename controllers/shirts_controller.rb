@@ -36,11 +36,11 @@ class ShirtsController < Sinatra::Base
   end
 
   get '/:id' do
-    id = params[:id].to_i
-    # get the ID and turn it in to an integer
 
+    # get the ID and turn it in to an integer
+    id = params[:id].to_i
     # make a single shirt object available in the template
-    @shirts = Shirt.find(id)
+    @shirts = Shirt.find id
 
     erb :'./shirts/show'
 
@@ -71,19 +71,13 @@ class ShirtsController < Sinatra::Base
 
   end
 
-  get '/:id/edit'  do
-    id = params[:id].to_i
-    @shirts = shirts[id]
-    erb :'/shirts/edit'
-
-  end
 
   put '/:id'  do
     id = params[:id].to_i
-    shirt = Shirt.all
-    shirt[:title] = params[:title]
-    shirt[:body] = params[:body]
-    shirts[id] = shirt
+    old_shirt = Shirt.find id
+    old_shirt.title = params[:title]
+    old_shirt.body = params[:body]
+    old_shirt.save
     redirect '/'
 
   end
@@ -95,7 +89,12 @@ class ShirtsController < Sinatra::Base
     redirect '/'
   end
 
+  get '/:id/edit'  do
+    id = params[:id].to_i
+    @shirts = Shirt.find id
+    erb :'/shirts/edit'
 
+  end
 
 
 end
