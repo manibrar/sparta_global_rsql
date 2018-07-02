@@ -1,8 +1,8 @@
 <h1><%= @shirts.title %></h1>
 <p><%= @shirts.body %></p>
-<a href="/<%= @shirts.id %>/edit">edit</a>
+<a href="/<%=@shirts.id%>/edit">edit</a>
 
-<form class="" action="/<%= @shirts.id %>" method="shirts">
-<input href="/<%= @shirts.id %>/edit" type="hidden" name="_method" value="delete">
-<input type="submit" name="submit" value="delete">
+<form class="" action="/<%= @shirts.id %>" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" name="delete" value="Click to delete">
 </form>

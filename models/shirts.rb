@@ -9,10 +9,10 @@ class Shirt
 
       if(!self.id)
         # Insert a new record in to the database
-        sql = "INSERT INTO shirts (title , body) VALUES ( '#{self.title}', '#{self.body}')"
+        sql = "INSERT INTO shirts (title , body) VALUES ('#{self.title}', '#{self.body}')"
       else
         # Update an existing one
-        sql = "UPDATE shirts SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"
+        sql = "UPDATE shirts SET title='#{self.title}', body='#{self.body}' WHERE id = '#{self.id}'"
       end
 
       conn.exec(sql)
@@ -62,7 +62,7 @@ class Shirt
 
       conn = self.open_connection
 
-      sql = "DELETE FROM SHIRTS where id = #{id}"
+      sql = "DELETE FROM SHIRTS WHERE id = #{id}"
 
       # handle delete here
       conn.exec(sql)

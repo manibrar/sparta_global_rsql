@@ -10,83 +10,37 @@ class ShirtsController < Sinatra::Base
       register Sinatra::Reloader
   end
 
-  shirts = [{
-      id: 0,
-      title: "shirt 1",
-      body: "This is the first shirt"
-  },
-  {
-      id: 1,
-      title: "shirt 2",
-      body: "This is the second shirt"
-  },
-  {
-      id: 2,
-      title: "shirt 3",
-      body: "This is the third shirt"
-  }];
 
   get '/' do
-
-
-      @shirts = Shirt.all
-
-      erb :'shirts/index'
-
+    @shirts = Shirt.all
+    erb :'shirts/index'
   end
-
-  get '/:id' do
-
-    # get the ID and turn it in to an integer
-    id = params[:id].to_i
-    # make a single shirt object available in the template
-    @shirts = Shirt.find id
-
-    erb :'./shirts/show'
-
-  end
-
-  post '/' do
-    new_shirt = {
-      id: params[:id],
-      title: params[:title],
-      body: params[:body]
-    }
-    shirts.push new_shirt
-    @shirts = shirts
-
-    redirect '/'
-
-  end
-
 
   get '/shirts/new'  do
 
-    @shirts = {
-      id: "",
-      title: "",
-      body: ""
-    }
+    new_shirt = Shirt.new
+    new_shirt.id = ""
+    new_shirt.title = ""
+    new_shirt.body = ""
+    @shirts = new_shirt
     erb :'/shirts/new'
 
   end
 
-
-  put '/:id'  do
-    id = params[:id].to_i
-    old_shirt = Shirt.find id
-    old_shirt.title = params[:title]
-    old_shirt.body = params[:body]
-    old_shirt.save
+  post '/' do
+    new_shirt = Shirt.new
+    new_shirt.title = params[:title],
+    new_shirt.body = params[:body]
+    new_shirt.save
     redirect '/'
-
   end
 
-  delete '/:id'  do
+  get '/:id' do
+    # get the ID and turn it in to an integer
     id = params[:id].to_i
-    shirts.delete_at(id)
-
-    redirect '/'
+    # make a single shirt object available in the template
+    @shirts = Shirt.find id
+    erb :'./shirts/show'
   end
 
   get '/:id/edit'  do
@@ -95,6 +49,25 @@ class ShirtsController < Sinatra::Base
     erb :'/shirts/edit'
 
   end
+
+  put '/:id'  do
+    id = params[:id].to_i
+    old_shirt = Shirt.find id
+    old_shirt.title = params[:title]
+    old_shirt.body = params[:body]
+    old_shirt.save
+    redirect '/'
+  end
+
+  delete '/:id'  do
+    id = params[:id].to_i
+
+    @shirts = Shirt.destroy id
+
+    redirect "/"
+  end
+
+
 
 
 end
